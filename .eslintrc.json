@@ -1,3 +1,14 @@
 {
-  "extends": "react-app"
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "plugins": ["react", "react-hooks", "react-refresh"],
+  "rules": {
+    "no-unused-vars": "warn", // Warn about unused variables
+    "react/no-unescaped-entities": "error", // Error for unescaped entities like apostrophes
+    "react/jsx-no-undef": "warn" // Optional: Warn about undefined JSX elements
+  },
+  "settings": {
+    "react": {
+      "version": "18.3"
+    }
+  }
 }
