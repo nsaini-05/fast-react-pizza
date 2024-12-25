@@ -4,7 +4,8 @@
   "rules": {
     "no-unused-vars": "warn", // Warn about unused variables
     "react/no-unescaped-entities": "error", // Error for unescaped entities like apostrophes
-    "react/jsx-no-undef": "warn" // Optional: Warn about undefined JSX elements
+    "react/jsx-no-undef": "warn", // Optional: Warn about undefined JSX elements
+    "react/prop-types": "off"
   },
   "settings": {
     "react": {
