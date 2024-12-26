@@ -1,39 +1,31 @@
-import { Link } from "react-router-dom";
-import LinkButton from "../../utilities/LinkButton.jsx";
-import Button from "../../ui/Button.jsx";
-import CartItem from "./CartItem.jsx";
-const fakeCart = [
-  {
-    pizzaId: 12,
-    name: "Mediterranean",
-    quantity: 2,
-    unitPrice: 16,
-    totalPrice: 32,
-  },
-  {
-    pizzaId: 6,
-    name: "Vegetale",
-    quantity: 1,
-    unitPrice: 13,
-    totalPrice: 13,
-  },
-  {
-    pizzaId: 11,
-    name: "Spinach and Mushroom",
-    quantity: 1,
-    unitPrice: 15,
-    totalPrice: 15,
-  },
-];
+import { Link } from 'react-router-dom';
+import LinkButton from '../../utilities/LinkButton.jsx';
+import Button from '../../ui/Button.jsx';
+import CartItem from './CartItem.jsx';
+import { useSelector } from 'react-redux';
+import { cartSelector, clearCart } from './cartSlice.js';
+import { useDispatch } from 'react-redux';
+import { useCallback } from 'react';
+import EmptyCart from './EmptyCart.jsx';
 
 function Cart() {
-  const cart = fakeCart;
+  const { userName } = useSelector((store) => store.user);
+  const { cartItems } = useSelector(cartSelector);
+  const dispatch = useDispatch();
+
+  const cart = cartItems;
+
+  const onClearCart = useCallback(() => {
+    dispatch(clearCart());
+  }, [dispatch]);
+
+  if (!cartItems.length) return <EmptyCart />;
 
   return (
     <div className="px-4 py-3">
       <LinkButton to="/menu">&larr; Back to menu</LinkButton>
 
-      <h2 className="mt-7 text-xl font-semibold">Your cart, %NAME% </h2>
+      <h2 className="mt-7 text-xl font-semibold">Your cart, {userName} </h2>
       <ul className="mt-3 divide-y divide-stone-200 border-b">
         {cart.map((cartItem) => {
           return <CartItem item={cartItem} key={cartItem.pizzaId} />;
@@ -43,7 +35,7 @@ function Cart() {
         <Button type="primary" to="/order/new">
           Order pizzas
         </Button>
-        <Button type="secondary" to="/order/new">
+        <Button type="secondary" onClick={onClearCart}>
           Clear Cart
         </Button>
       </div>
