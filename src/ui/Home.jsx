@@ -1,4 +1,4 @@
-import CreateUser from "../features/user/CreateUser.jsx";
+import CreateUser from '../features/user/CreateUser.jsx';
 function Home() {
   return (
     <div className="my-20 px-4 text-center sm:my-16">
