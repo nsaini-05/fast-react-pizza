@@ -7,7 +7,6 @@ import { cartSelector, clearCart } from './cartSlice.js';
 import { useDispatch } from 'react-redux';
 import { useCallback } from 'react';
 import EmptyCart from './EmptyCart.jsx';
-
 function Cart() {
   const { userName } = useSelector((store) => store.user);
   const { cartItems } = useSelector(cartSelector);
